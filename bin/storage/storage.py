@@ -6,6 +6,7 @@
 # 
 
 import os, json
+import bcrypt
 
 file_path = os.getcwd() + "/bin/storage/xpass.json"
 
@@ -21,7 +22,7 @@ class Storage:
         initial_setup = {
             "user": {
                 "username": username,
-                "password": password
+                "password": str(bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()))
             },
             "passwords": []
         }
